@@ -1,0 +1,2 @@
+Baris 1: Ini adalah baris pertama.
+Baris 2: Python File Handling itu mudah.

@@ -1,0 +1,4 @@
+Nama	: Danuardi Saputro
+Umur	: 20 Tahun
+Hobi	: Ngoding
+Semangat Belajar Python!
