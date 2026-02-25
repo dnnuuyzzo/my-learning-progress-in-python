@@ -24,8 +24,23 @@ Buat objek Kucing dan panggil info() serta makan()
 """
 # Tulis jawaban SOAL 1 di sini:
 
+class Hewan:
+    def __init__(self, nama, jenis):
+        self.nama = nama
+        self.jenis = jenis
+    def info(self):
+        print(f"Nama: {self.nama}, Jenis: {self.jenis}")
 
+class Kucing(Hewan):
+    def __init__(self, nama, jenis, warna):
+        super().__init__(nama, jenis)
+        self.warna = warna
+    def makan(self):
+        print(f"{self.nama} sedang makan ikan")
 
+my_cat = Kucing("Genki", "Anggora", "Oranye")
+my_cat.info()
+my_cat.makan()
 
 # ============================================================================
 # SOAL 2: super().__init__() ⭐
@@ -44,7 +59,22 @@ Buat objek Mobil("Toyota", 2024, "Hitam", 4) dan panggil semua method
 """
 # Tulis jawaban SOAL 2 di sini:
 
+class Kendaraan:
+    def __init__(self, merk, tahun):
+        self.merk = merk
+        self.tahun = tahun
+    def info(self):
+        print(f"Merk: {self.merk}, Tahun: {self.tahun}")
 
+class Mobil(Kendaraan):
+    def __init__(self, merk, tahun, warna, jumlah_pintu):
+        super().__init__(merk, tahun)
+    def klakson(self):
+        print("Tin tin!")
+
+my_car = Mobil("Toyota", 2024, "Hitam", 4)
+my_car.info()
+my_car.klakson()
 
 
 # ============================================================================
@@ -67,8 +97,29 @@ Buat objek keduanya dan panggil tampilkan()
 """
 # Tulis jawaban SOAL 3 di sini:
 
+class Bentuk:
+    def luas(self):
+        return 0
+    def tampilkan(self):
+        print(f"Luas = {self.luas()}")
 
+class Persegi(Bentuk):
+    def __init__(self, sisi):
+        self.sisi = sisi
+    def luas(self):
+        return self.sisi * self.sisi
 
+class PersegiPanjang(Bentuk):
+    def __init__(self, panjang, lebar):
+        self.panjang = panjang
+        self.lebar = lebar
+    def luas(self):
+        return self.panjang * self.lebar
+
+p = Persegi(10)
+pp = PersegiPanjang(5, 2)
+p.tampilkan()
+pp.tampilkan()
 
 # ============================================================================
 # SOAL 4: Multilevel Inheritance ⭐⭐
@@ -83,8 +134,22 @@ Buat objek Burung dan panggil ketiga method tersebut
 """
 # Tulis jawaban SOAL 4 di sini:
 
+class Makhluk:
+    def bernapas(self):
+        print("Bernapas...")
 
+class Hewan2(Makhluk):
+    def bergerak(self):
+        print("Bergerak...")
 
+class Burung(Hewan2):
+    def terbang(self):
+        print("Terbang...")
+
+my_bird = Burung()
+my_bird.bernapas()
+my_bird.bergerak()
+my_bird.terbang()
 
 # ============================================================================
 # SOAL 5: Multiple Inheritance ⭐⭐
@@ -100,8 +165,24 @@ Buat objek Bebek dan panggil semua method
 """
 # Tulis jawaban SOAL 5 di sini:
 
+class BisaBerenang:
+    def berenang(self):
+        print("🏊 Berenang!")
 
+class BisaTerbang:
+    def terbang(self):
+        print("🦅 Terbang!")
 
+class Bebek(BisaBerenang, BisaTerbang):
+    def __init__(self, nama):
+        self.nama = nama
+    def perkenalan(self):
+        print(f"Saya {self.nama}, bebek multitalenta!")
+
+my_duck = Bebek("Quack")
+my_duck.berenang()
+my_duck.terbang()
+my_duck.perkenalan()
 
 # ============================================================================
 # SOAL 6: isinstance() dan issubclass() ⭐⭐
@@ -119,8 +200,12 @@ Cetak hasil dari:
 """
 # Tulis jawaban SOAL 6 di sini:
 
-
-
+elang = Burung()
+print(isinstance(elang, Burung))
+print(isinstance(elang, Hewan2))
+print(isinstance(elang, Makhluk))
+print(issubclass(Burung, Makhluk))
+print(issubclass(Makhluk, Burung))
 
 # ============================================================================
 # SOAL 7: Hierarchical Inheritance ⭐⭐
@@ -139,8 +224,42 @@ Buat masing-masing 1 objek dan panggil telepon() + method uniknya
 """
 # Tulis jawaban SOAL 7 di sini:
 
+class Smartphone:
+    def __init__(self, merk, ram):
+        self.merk = merk
+        self.ram = ram
+    def telepon(self):
+        print(f"{self.merk} sedang menelepon...")
 
+class iPhone(Smartphone):
+    def __init__(self, merk, ram):
+        super().__init__(merk, ram)
+    def facetime(self):
+        print("FaceTime aktif!")
 
+class Samsung(Smartphone):
+    def __init__(self, merk, ram):
+        super().__init__(merk, ram)
+    def dex_mode(self):
+        print("DeX Mode aktif!")
+
+class Xiaomi(Smartphone):
+    def __init__(self, merk, ram):
+        super().__init__(merk, ram)
+    def ir_blaster(self):
+        print("IR Blaster aktif!")
+
+my_iphone = iPhone("iPhone 17 Pro Max", 32)
+my_iphone.telepon()
+my_iphone.facetime()
+
+my_samsung = Samsung("Samsung Zfold", 32)
+my_samsung.telepon()
+my_samsung.dex_mode()
+
+my_xiaomi = Xiaomi("Redmi 13 Pro", 16)
+my_xiaomi.telepon()
+my_xiaomi.ir_blaster()
 
 # ============================================================================
 # SOAL 8: Encapsulation + Inheritance ⭐⭐
@@ -161,8 +280,31 @@ Demo: buat objek, setor, tarik, dan hitung bunga
 """
 # Tulis jawaban SOAL 8 di sini:
 
+class RekeningBank():
+    def __init__(self, pemilik, bank, saldo):
+        self.pemilik = pemilik
+        self._bank = bank
+        self.__saldo = saldo
+    def lihat_saldo(self):
+        return self.__saldo
+    def setor(self, jumlah):
+        self.__saldo += jumlah
+        print("Terkonfirmasi")
+    def tarik(self, jumlah):
+        self.__saldo -= jumlah
+        print("Terkonfirmasi")
 
+class RekeningTabungan(RekeningBank):
+    def __init__(self, pemilik, bank, saldo, bunga_persen):
+        super().__init__(pemilik, bank, saldo)
+        self.bunga_persen = bunga_persen
+    def hitung_bunga(self):
+        return self.lihat_saldo() * self.bunga_persen / 100
 
+my_rekening = RekeningTabungan("Danuardi", "BTN", 10000000000000000, 10)
+my_rekening.setor(100000)
+my_rekening.tarik(4578928)
+print(my_rekening.hitung_bunga())
 
 # ============================================================================
 # SOAL 9: Abstract Class ⭐⭐⭐
@@ -182,8 +324,47 @@ Buktikan bahwa PembayaranOnline() langsung TIDAK BISA dibuat (pakai try-except)
 """
 # Tulis jawaban SOAL 9 di sini:
 
+from abc import ABC, abstractmethod
 
+class PembayaranOnline(ABC):
+    @abstractmethod
+    def bayar(self, jumlah):
+        pass
+    @abstractmethod
+    def cek_saldo(self):
+        pass
+    def riwayat(self):
+        print("Menampilkan riwayat transaksi...")
 
+class GoPay(PembayaranOnline):
+    def __init__(self, saldo):
+        self.__saldo = saldo
+    def isi_saldo(self, jumlah):
+        self.__saldo += jumlah
+    def bayar(self, jumlah):
+        self.__saldo -= jumlah
+    def cek_saldo(self):
+        return self.__saldo
+
+class OVO(PembayaranOnline):
+    def __init__(self, saldo):
+        self.__saldo = saldo
+    def isi_saldo(self, jumlah):
+        self.__saldo += jumlah
+    def bayar(self, jumlah):
+        self.__saldo -= jumlah
+    def cek_saldo(self):
+        return self.__saldo
+
+my_gopay = GoPay(100000)
+my_gopay.isi_saldo(10000)
+my_gopay.bayar(20000)
+print(my_gopay.cek_saldo())
+
+my_OVO = OVO(200000)
+my_OVO.isi_saldo(50000)
+my_OVO.bayar(100000)
+print(my_OVO.cek_saldo)
 
 # ============================================================================
 # SOAL 10: Property + Inheritance ⭐⭐⭐
@@ -204,8 +385,43 @@ Coba set nilai menjadi -10 dan tangkap error-nya
 """
 # Tulis jawaban SOAL 10 di sini:
 
+class Siswa:
+    def __init__(self, nama, nilai):
+        self.nama = nama
+        self._nilai = nilai
+    
+    @property
+    def nilai(self):
+        return self._nilai
 
+    @nilai.setter
+    def nilai(self, input_nilai):
+        if input_nilai < 0 or input_nilai > 100:
+            raise ValueError("Nilai harus berada di rentang 0-100")
+        else:
+            self._nilai = input_nilai
 
+class SiswaBeasiswa(Siswa):
+    def __init__(self, nama, nilai, beasiswa):
+        super().__init__(nama, nilai)
+        self.beasiswa = beasiswa
+    
+    @property
+    def status(self):
+        if self._nilai >= 80:
+            return "Layak"
+        else:
+            return "Tidak Layak"
+
+    def info(self):
+        print(f"Nama: {self.nama}, Nilai: {self.nilai}, Beasiswa: {self.beasiswa}, Status: {self.status}")
+
+siswa = SiswaBeasiswa("Danuardi", 100, "KIPK")
+siswa.info()
+try:
+    siswa.nilai = -10
+except ValueError as e:
+    print(f"Error: {e}")
 
 # ============================================================================
 # SOAL 11: MRO (Method Resolution Order) ⭐⭐⭐
@@ -224,8 +440,23 @@ Pertanyaan (jawab di print):
 """
 # Tulis jawaban SOAL 11 di sini:
 
+class X:
+    def siapa(self):
+        print("X")
 
+class Y(X):
+    def siapa(self):
+        print("Y")
 
+class Z(X):
+    def siapa(self):
+        print("Z")
+
+class W(Y, Z):
+    pass
+
+w = W()
+w.siapa()
 
 # ============================================================================
 # SOAL 12: super() di Multiple Inheritance ⭐⭐⭐
@@ -243,8 +474,29 @@ Cetak MRO-nya dan jelaskan __init__ mana yang terpanggil via super()
 """
 # Tulis jawaban SOAL 12 di sini:
 
+class Database:
+    def __init__(self):
+        print("Database siap")
+    def simpan(self):
+        print("Data disimpan ke Database")
 
+class Cache:
+    def __init__(self):
+        print("Cache Siap")
+    def simpan(self):
+        print("Data disimpan ke Cache")
 
+class Aplikasi(Database, Cache):
+    def __init__(self):
+        super().__init__()
+    def simpan_semua():
+        Database.simpan()
+        Cache.simpan()
+
+my_app = Aplikasi()
+my_app.simpan()
+print("MRO dari Aplikasi:", [cls.__name__ for cls in Aplikasi.__mro__])
+# Yang dipanggil adalah __init__ nya Database
 
 # ============================================================================
 # SOAL 13: Sistem Toko Online ⭐⭐⭐
@@ -273,8 +525,43 @@ Demo:
 """
 # Tulis jawaban SOAL 13 di sini:
 
+class Produk:
+    def __init__(self, nama, harga, stok):
+        self.nama = nama
+        self.harga = harga
+        self.stok = stok
+    def beli(self, jumlah):
+        if jumlah > self.stok or not self.stok:
+            print("Stok tidak cukup")
+        else:
+            self.stok -= jumlah
+    def __str__(self):
+        return f"{self.nama} - Rp{self.harga:,} (Stok: {self.stok})"
 
+class Elektronik(Produk):
+    def __init__(self, nama, harga, stok, garansi_bulan):
+        super().__init__(nama, harga, stok)
+        self.garansi_bulan = garansi_bulan
+    def __str__(self):
+        return f"{super().__str__()} [Garansi: {self.garansi_bulan}]"
 
+class Pakaian(Produk):
+    def __init__(self, nama, harga, stok, ukuran, warna):
+        super().__init__(nama, harga, stok)
+        self.ukuran = ukuran
+        self.warna = warna
+    def __str__(self):
+        return f"{super().__str__()}, Ukuran: {self.ukuran}, Warna: {self.warna}"
+
+smartphone = Elektronik("Samsung Zfold", 100000000, 1, 36)
+print(smartphone)
+smartphone.beli(1)
+print(smartphone)
+
+dress = Pakaian("Dress Pesta Mewah", 50000000, 20, "M", "Merah")
+print(dress)
+dress.beli(10)
+print(dress)
 
 # ============================================================================
 # SOAL 14: Sistem Karyawan + Gaji ⭐⭐⭐⭐
@@ -302,8 +589,46 @@ Demo: buat 1 objek dari masing-masing class dan panggil slip_gaji()
 """
 # Tulis jawaban SOAL 14 di sini:
 
+class Karyawan(ABC):
+    def __init__(self, nama, id_karyawan):
+        self.nama = nama
+        self.id_karyawan = id_karyawan
+    @abstractmethod
+    def hitung_gaji(self):
+        pass
+    def slip_gaji(self):
+        print(f"{self.nama} - ({self.id_karyawan}) Rp{self.hitung_gaji}")
 
+class KaryawanTetap(Karyawan):
+    def __init__(self, nama, id_karyawan, gaji_pokok, tunjangan):
+        super().__init__(nama, id_karyawan)
+        self.gaji_pokok = gaji_pokok
+        self.tunjangan = tunjangan
+    def hitung_gaji(self):
+        return self.gaji_pokok + self.tunjangan
 
+class KaryawanKontrak(Karyawan):
+    def __init__(self, nama, id_karyawan, upah_per_jam, jam_kerja):
+        super().__init__(nama, id_karyawan)
+        self.upah_per_jam = upah_per_jam
+        self.jam_kerja = jam_kerja
+    def hitung_gaji(self):
+        return self.upah_per_jam * self.jam_kerja
+
+class KaryawanFreelance(Karyawan):
+    def __init__(self, nama, id_karyawan, upah_per_proyek, jumlah_proyek):
+        super().__init__(nama, id_karyawan)
+        self.upah_per_proyek = upah_per_proyek
+        self.jumlah_proyek = jumlah_proyek
+    def hitung_gaji(self):
+        return self.upah_per_proyek * self.jumlah_proyek
+
+karyawan_1 = KaryawanTetap("Asep", 157028, 20000000, 5000000)
+karyawan_2 = KaryawanKontrak("Ucup", 152798, 100000, 8)
+karyawan_3 = KaryawanFreelance("Tuti", 123086, 50000000, 3)
+print(karyawan_1.hitung_gaji())
+print(karyawan_2.hitung_gaji())
+print(karyawan_3.hitung_gaji())
 
 # ============================================================================
 # SOAL 15: Sistem RPG Game ⭐⭐⭐⭐
@@ -337,7 +662,63 @@ Demo: Buat 1 Warrior, 1 Mage, 1 Archer dan simulasikan pertarungan sederhana
 """
 # Tulis jawaban SOAL 15 di sini:
 
+class Karakter(ABC):
+    def __init__(self, nama, hp, attack):
+        self.nama = nama
+        self.hp = hp
+        self.attack = attack
 
+    @abstractmethod
+    def skill_khusus(self):
+        pass
+    def serang(self, target):
+        target.hp -= self.attack
+        print(f"{self.nama} menyerang {target.nama}! HP {target.nama}: {target.hp}")
+    def is_alive(self):
+        if self.hp < 0:
+            return f"{self.nama} telah mati! HP: {self.hp}"
+        else:
+            return self.hp
+
+class Warrior(Karakter):
+    def __init__(self, nama, hp, attack, armor):
+        super().__init__(nama, hp, attack)
+        self.armor = armor
+    def skill_khusus(self):
+        print(f"{self.nama} menggunakan Shield Bash!")
+        self.attack += self.attack * 0.5
+
+class Mage(Karakter):
+    def __init__(self, nama, hp, attack, mana):
+        super().__init__(nama, hp, attack)
+        self.mana = mana
+    def skill_khusus(self, target):
+        if self.mana >= 20:
+            print(f"{self.nama} menggunakan Fireball!")
+            self.attack *= 2
+            self.mana -= 20
+
+class Archer(Karakter):
+    def __init__(self, nama, hp, attack, arrows):
+        super().__init__(nama, hp, attack)
+        self.arrows = arrows
+    def skill_khusus(self):
+        if self.arrows >= 5:
+            self.attack *= 3
+            self.arrows -= 5
+
+smith = Warrior("Smith", 100, 10, 5)
+shell = Mage("Shell", 70, 15, 5)
+glin = Archer("Glin", 50, 25, 5)
+
+while smith.is_alive() and shell.is_alive() and glin.is_alive() > 0:
+    smith.serang(shell)
+    shell.serang(glin)
+    glin.serang(smith)
+
+print(smith.is_alive())
+print(shell.is_alive())
+print(glin.is_alive())
 
 
 # ============================================================================
